@@ -1,7 +1,5 @@
 .env
 
-seed_fake_data.py
-
 chroma_db/
 
 myenv/
@@ -17,3 +15,5 @@ __pycache__/
 Thumbs.db
 
 *.log
+
+test_retrieval.py
