@@ -38,8 +38,3 @@ vectorstore = Chroma.from_documents(
 )
 
 print("\nVector store created and saved to 'chroma_db/' folder!")
-
-results = vectorstore.similarity_search("how many days of return policy", k=2)
-for r in results:
-    print(r.page_content[:200])
-    print("---")
