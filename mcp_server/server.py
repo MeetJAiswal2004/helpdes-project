@@ -1,17 +1,17 @@
 from mcp.server.fastmcp import FastMCP
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
-from sql_tools import get_my_orders, get_my_profile, create_support_ticket, contains_harmful_keywords
+from .sql_tools import get_my_orders, get_my_profile, create_support_ticket, contains_harmful_keywords
 
 # Load the same embedding model used in rag_setup.py, and point to the saved vector store
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 vectorstore = Chroma(
-    persist_directory="chroma_db",
+    persist_directory="backend/chroma_db",
     embedding_function=embeddings
 )
 
 # This server exposes all our RAG and SQL functions as MCP tools
-mcp = FastMCP("helpdesk-server")
+mcp = FastMCP("helpdesk-server", host="127.0.0.1", port=8001)
 
 # RAG tool: lets the agent search across all three policy PDFs
 @mcp.tool()
@@ -61,4 +61,4 @@ def raise_ticket(customer_id: int, issue: str) -> dict:
 
 # Starts the server and listens for a client (our LangChain agent) over stdio
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    mcp.run(transport="streamable-http")

@@ -1,4 +1,4 @@
-from db_connection import get_connection
+from backend.db_connection import get_connection
 
 # Read-only function: returns every order that belongs to this customer
 def get_my_orders(customer_id: int):

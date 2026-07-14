@@ -38,8 +38,8 @@ embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-
 vectorstore = Chroma.from_documents(
     documents=chunks,
     embedding=embeddings,
-    persist_directory="chroma_db"
+    persist_directory="backend/chroma_db"
 )
 
 # print message for confirmation that the vector store has been created and saved in local
-print("\nVector store created and saved to 'chroma_db/' folder")
+print("\nVector store created and saved to 'backend/chroma_db/' folder")

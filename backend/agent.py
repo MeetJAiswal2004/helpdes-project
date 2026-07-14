@@ -32,20 +32,24 @@ that this isn't possible, and offer to raise a support ticket instead.
 
 Always use the customer_id provided in the conversation context for any
 tool that requires it. Never ask the customer for their customer_id directly.
+
+Formatting rules for your responses:
+- When listing multiple items (orders, tickets, profile fields), use a
+  markdown bullet list with a line break before each item, not one long sentence.
+- Use **bold** for field labels (e.g. **Order ID:**, **Status:**).
+- Keep each item on its own line.
+- Keep responses concise and easy to scan.
 """
 
 # agent builder function that connects to the MCP server and retrieves the tools, then creates a React agent with the LLM and tools
 async def build_agent():
-    # Connect to MCP server (this IS the MCP client) 
     client = MultiServerMCPClient({
         "helpdesk": {
-            "command": "python",
-            "args": ["mcp_server.py"],
-            "transport": "stdio"
+            "url": "http://127.0.0.1:8001/mcp",
+            "transport": "streamable_http"
         }
     })
 
-    # Wait for the MCP server to be ready and retrieve the tools
     tools = await client.get_tools()
     agent = create_react_agent(llm, tools, prompt=SYSTEM_PROMPT)
     return agent

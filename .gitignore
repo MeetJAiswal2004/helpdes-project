@@ -1,19 +1,19 @@
 .env
 
-chroma_db/
-
 myenv/
 
 __pycache__/
 *.pyc
 *.pyo
 
+backend/chroma_db/
+
+frontend/node_modules/
+frontend/dist/
+
 .vscode/
 .idea/
-
 .DS_Store
 Thumbs.db
 
 *.log
-
-test_retrieval.py
