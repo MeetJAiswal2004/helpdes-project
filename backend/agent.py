@@ -39,6 +39,10 @@ Formatting rules for your responses:
 - Use **bold** for field labels (e.g. **Order ID:**, **Status:**).
 - Keep each item on its own line.
 - Keep responses concise and easy to scan.
+
+If a query/question is ambiguous, or does not clearly match any of the available
+tools, ask the customer to clarify what they need instead of repeatedly
+searching or guessing at an answer.
 """
 
 # agent builder function that connects to the MCP server and retrieves the tools, then creates a React agent with the LLM and tools
